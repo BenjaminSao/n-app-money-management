@@ -63,6 +63,7 @@ export class ManageTransactionsViewModel extends PageViewModel
         this._amount = 0;
         this._validator = this.createValidator();
     }
+
     public async save(): Promise<void>
     {
         this._validator.enable();
@@ -108,11 +109,14 @@ export class ManageTransactionsViewModel extends PageViewModel
             this._isNew = true;
         }
     }
+
+
     private validate(): boolean
     {
         this._validator.validate(this);
         return this._validator.isValid;
     }
+
     private createValidator(): Validator<this>
     {
         const validator = new Validator<this>(true);

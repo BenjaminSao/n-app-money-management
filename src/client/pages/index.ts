@@ -3,7 +3,6 @@ import { ListTransactionsViewModel } from "./list-transactions/list-transactions
 import { ManageTransactionsViewModel } from "./manage-transactions/manage-transactions-view-model";
 
 
-
 export const pages: Array<Function> = [
     ListTransactionsViewModel,
     ManageTransactionsViewModel

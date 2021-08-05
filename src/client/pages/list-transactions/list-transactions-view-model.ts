@@ -8,6 +8,7 @@ import { Transaction } from "../../../sdk/proxies/transaction/transaction";
 import { Routes } from "../routes";
 import { CurrencyConversionService } from "../../../sdk/services/currency-conversion-service/currency-conversion-service";
 
+
 @template(require("./list-transactions-view.html"))
 @route(Routes.listTransactions)
 @components(TransactionViewModel)
@@ -16,7 +17,6 @@ export class ListTransactionsViewModel extends PageViewModel
 {
     private readonly _transactionService: TransactionService;
     private readonly _currencyConversionService: CurrencyConversionService;
-
     private _transactions: ReadonlyArray<Transaction>;
     private _currencyType: string = "CAD";
     private _expenseTotal: number = 0;

@@ -1,4 +1,3 @@
-// import { MockTransactionProxy } from "../../proxies/transaction/mock-transaction-proxy";
 import { Transaction } from "../../proxies/transaction/transaction";
 import { CurrencyConversionService } from "./currency-conversion-service";
 
@@ -9,10 +8,8 @@ export class MockCurrencyConversionService implements CurrencyConversionService
     public async fetchCadValue(transaction: Transaction): Promise<number>
     {
         const baseValue = this._convertTransactionToBaseValue(transaction);
-
         if (baseValue)
             return baseValue;
-
         throw new Error("Error Converting Value");
     }
 

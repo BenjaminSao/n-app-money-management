@@ -27,7 +27,6 @@ export class TransactionViewModel extends ComponentViewModel
         this._navigationService = navigationService;
     }
 
-
     public editTransaction(): void
     {
         this._navigationService.navigate(Routes.manageTransactions, { id: this.transaction.id });

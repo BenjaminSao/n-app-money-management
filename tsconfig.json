@@ -5,7 +5,7 @@
         "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "noImplicitThis": true,
+        "noImplicitThis": false,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
@@ -18,6 +18,10 @@
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
         "skipLibCheck": true,
+        "importHelpers": true,
+        "noEmitHelpers": true,
+        "resolveJsonModule": true,
+        "noImplicitOverride": true,
         "plugins": [
             {
                 "name": "typescript-tslint-plugin",

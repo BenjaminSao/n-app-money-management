@@ -10,11 +10,11 @@
             <p class="card-footer-item is-flex-grow-2">
                 {{transaction.amount}}
             </p>
-            <p class="card-footer-item is-flex-grow-1" @click="deleteTransaction">
+            <p class="card-footer-item is-flex-grow-1" v-on:click.prevent="deleteTransaction">
                 <button class="delete"></button>
             </p>
-            <p class="card-footer-item is-flex-grow-1" v-on:click.prevent="editTransaction">
-                edit
+            <p class="card-footer-item is-flex-grow-1 is-clickable" v-on:click.prevent="editTransaction">
+                <img src="./images/edit-3.svg" alt="">
             </p>
         </footer>
     </div>

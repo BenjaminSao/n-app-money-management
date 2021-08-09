@@ -34,9 +34,7 @@
             </footer>
 
         </div>
-        <div v-for="transaction in transactions">
-            <transaction v-bind:key="transaction.id" v-bind:value="transaction"
-                @transaction-deleted="transactionDeleted()"></transaction>
-        </div>
+        <transaction v-for="transaction in transactions" v-bind:key="transaction.id" v-bind:value="transaction"
+            @transaction-deleted="transactionDeleted"></transaction>
     </section>
 </div>

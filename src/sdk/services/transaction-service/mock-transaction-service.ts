@@ -16,8 +16,8 @@ export class MockTransactionService implements TransactionService
         const transactions = new Array<MockTransactionProxy>();
         const count = 0;
 
-        for (let i = 0; i < count; i++)
-            transactions.push(new MockTransactionProxy("id", "name", "description", "transactionType", "transactionCurrency", 0));
+        // for (let i = 0; i < count; i++)
+        //     transactions.push(new MockTransactionProxy("id", "name", "description", "transactionType", "transactionCurrency", 0));
 
         this._transactions = transactions;
         this._counter = count;
@@ -26,7 +26,7 @@ export class MockTransactionService implements TransactionService
 
     public getTransactions(): Promise<ReadonlyArray<Transaction>>
     {
-        return Promise.resolve(this._transactions);
+        return Promise.resolve(this._transactions.where(t => !t.isDeleted));
     }
 
     public getTransaction(id: string): Promise<Transaction>

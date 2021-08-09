@@ -1,5 +1,4 @@
 import { components, PageViewModel, route, template } from "@nivinjoseph/n-app";
-import { TransactionViewModel } from "./components/transaction/transaction-view-model";
 import "./list-transactions-view.scss";
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
@@ -7,6 +6,7 @@ import { TransactionService } from "../../../sdk/services/transaction-service/tr
 import { Transaction } from "../../../sdk/proxies/transaction/transaction";
 import { Routes } from "../routes";
 import { CurrencyConversionService } from "../../../sdk/services/currency-conversion-service/currency-conversion-service";
+import { TransactionViewModel } from "./components/transaction/transaction-view-model";
 
 
 @template(require("./list-transactions-view.html"))
@@ -28,7 +28,7 @@ export class ListTransactionsViewModel extends PageViewModel
     public get expenseTotal(): number { return this._expenseTotal; }
     public get incomeTotal(): number { return this._incomeTotal; }
     public get netInHand(): number { return this._incomeTotal - this._expenseTotal; }
-    public get transactions(): ReadonlyArray<Transaction> { return this._transactions?.where(t => !t.isDeleted) ?? []; }
+    public get transactions(): ReadonlyArray<Transaction> { return this._transactions ?? []; }
 
 
     public constructor(transactionService: TransactionService, currencyConversionService: CurrencyConversionService) 
@@ -47,17 +47,26 @@ export class ListTransactionsViewModel extends PageViewModel
 
     public changeCurrency()
     {
-        this._calculateCreditTotal();
-        this._calculateDebitTotal();
+        this._calculateTotals();
     }
 
     public transactionDeleted()
     {
-        this._calculateCreditTotal();
-        this._calculateDebitTotal();
-        console.log("this method is called");
+        this._calculateTotals();
+        console.log("step 2");
+        // re fetch the data of transactions without the deleted value 
+        this._transactionService.getTransactions()
+            .then(t =>
+            {
+                this._transactions = t;
+            })
+            .catch(e => console.log(e));
     }
 
+    public printConsole()
+    {
+        console.log("print console method invoked");
+    }
 
     protected override onEnter(): void
     {
@@ -69,10 +78,16 @@ export class ListTransactionsViewModel extends PageViewModel
             .then(t =>
             {
                 this._transactions = t;
-                this._calculateCreditTotal();
-                this._calculateDebitTotal();
+                this._calculateTotals();
+                console.log(this._transactions);
             })
             .catch(e => console.log(e));
+    }
+
+    private _calculateTotals(): void
+    {
+        this._calculateCreditTotal();
+        this._calculateDebitTotal();
     }
 
 
@@ -121,5 +136,6 @@ export class ListTransactionsViewModel extends PageViewModel
         return convertedValue;
     }
 }
+
 
 

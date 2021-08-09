@@ -2,7 +2,7 @@ import { PageViewModel, route, template, NavigationService } from "@nivinjoseph/
 import "./manage-transactions-view.scss";
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
-import { Validator, strval } from "@nivinjoseph/n-validate";
+import { Validator, strval, numval, } from "@nivinjoseph/n-validate";
 import { TransactionService } from "../../../sdk/services/transaction-service/transaction-service";
 import { Transaction } from "../../../sdk/proxies/transaction/transaction";
 import { Routes } from "../routes";
@@ -60,7 +60,7 @@ export class ManageTransactionsViewModel extends PageViewModel
         this._description = "";
         this._transactionType = "";
         this._transactionCurrency = "";
-        this._amount = 0;
+        this._amount = null as any;
         this._validator = this.createValidator();
     }
 
@@ -142,7 +142,8 @@ export class ManageTransactionsViewModel extends PageViewModel
             .isString();
         validator
             .prop("amount")
-            .isRequired().withMessage("amount is required.");
+            .isRequired().withMessage("amount is required and must be a positive intiger")
+            .useValidationRule(numval.hasMinValue(1));
         return validator;
     }
 

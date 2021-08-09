@@ -34,15 +34,22 @@ export class TransactionViewModel extends ComponentViewModel
 
     public async deleteTransaction(): Promise<void>
     {
-        try
+        let deleteTransaction = this.transaction.name;
+        let result = confirm("press Ok to delete : " + deleteTransaction);
+        if (result)
         {
-            await this.transaction.delete();
+            try
+            {
+                await this.transaction.delete();
 
-            this.emit("transactionDeleted");
-        }
-        catch (e)
-        {
-            console.log(e);
+                this.emit("transactionDeleted");
+
+                console.log("step 1");
+            }
+            catch (e)
+            {
+                console.log(e);
+            }
         }
     }
 }

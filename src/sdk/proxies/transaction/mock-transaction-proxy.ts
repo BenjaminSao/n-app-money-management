@@ -52,7 +52,7 @@ export class MockTransactionProxy implements Transaction
         given(description as string, "description").ensureIsString();
         given(transactionType, "transactionType").ensureHasValue().ensureIsString();
         given(transactionCurrency, "transactionCurrency").ensureHasValue().ensureIsString();
-        given(amount, "amount").ensureHasValue();
+        given(amount, "amount").ensureHasValue().ensureIsNumber();
 
         this._name = name.trim();
         this._description = description ? description.trim() : null as any;

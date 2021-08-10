@@ -17,6 +17,7 @@ export class ListTransactionsViewModel extends PageViewModel
 {
     private readonly _transactionService: TransactionService;
     private readonly _currencyConversionService: CurrencyConversionService;
+
     private _transactions: ReadonlyArray<Transaction>;
     private _currencyType: string = "CAD";
     private _expenseTotal: number = 0;
@@ -53,7 +54,6 @@ export class ListTransactionsViewModel extends PageViewModel
     public transactionDeleted()
     {
         this._calculateTotals();
-        console.log("step 2");
         // re fetch the data of transactions without the deleted value 
         this._transactionService.getTransactions()
             .then(t =>
@@ -63,10 +63,6 @@ export class ListTransactionsViewModel extends PageViewModel
             .catch(e => console.log(e));
     }
 
-    public printConsole()
-    {
-        console.log("print console method invoked");
-    }
 
     protected override onEnter(): void
     {
@@ -79,7 +75,6 @@ export class ListTransactionsViewModel extends PageViewModel
             {
                 this._transactions = t;
                 this._calculateTotals();
-                console.log(this._transactions);
             })
             .catch(e => console.log(e));
     }

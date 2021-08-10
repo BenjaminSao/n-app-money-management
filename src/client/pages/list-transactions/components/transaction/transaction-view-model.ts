@@ -27,6 +27,7 @@ export class TransactionViewModel extends ComponentViewModel
         this._navigationService = navigationService;
     }
 
+
     public editTransaction(): void
     {
         this._navigationService.navigate(Routes.manageTransactions, { id: this.transaction.id });
@@ -43,22 +44,11 @@ export class TransactionViewModel extends ComponentViewModel
                 await this.transaction.delete();
 
                 this.emit("transactionDeleted");
-
-                console.log("step 1");
             }
             catch (e)
             {
-                console.log(e);
+                console.error(e);
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-

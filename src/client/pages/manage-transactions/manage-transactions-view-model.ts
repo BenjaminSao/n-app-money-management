@@ -46,6 +46,7 @@ export class ManageTransactionsViewModel extends PageViewModel
     public get hasErrors(): boolean { return !this.validate(); }
     public get errors(): Object { return this._validator.errors; }
 
+
     public constructor(transactionService: TransactionService, navigationService: NavigationService)
     {
         super();
@@ -64,6 +65,7 @@ export class ManageTransactionsViewModel extends PageViewModel
         this._validator = this.createValidator();
     }
 
+
     public async save(): Promise<void>
     {
         this._validator.enable();
@@ -76,7 +78,8 @@ export class ManageTransactionsViewModel extends PageViewModel
                 await this._transaction.update(this._name, this._description, this._transactionType, this._transactionCurrency, this._amount);
             else
                 await this._transactionService.createTransaction(this._name, this._description, this._transactionType, this._transactionCurrency, this._amount);
-        } catch (e)
+        }
+        catch (e)
         {
             console.log(e);
             return;
@@ -87,6 +90,7 @@ export class ManageTransactionsViewModel extends PageViewModel
 
     protected override onEnter(id?: string): void // getting the path parameter from the url
     {
+        super.onEnter();
         if (id && !id.isEmptyOrWhiteSpace())
         {
             this._isNew = false;

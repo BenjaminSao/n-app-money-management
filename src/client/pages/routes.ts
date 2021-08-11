@@ -1,6 +1,9 @@
 export class Routes
 {
-    public static home = "/home";
-
-    public static readonly default = Routes.home;
+    public static readonly listTransactions = "/list-transactions";
+    public static readonly manageTransactions = "/manage?{id?:string}";
+    public static readonly default = Routes.listTransactions;
 }
+
+
+

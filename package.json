@@ -92,7 +92,7 @@
     "worker-loader": "^3.0.8"
   },
   "dependencies": {
-    "@nivinjoseph/n-app": "^3.0.59",
+    "@nivinjoseph/n-app": "^3.0.63",
     "@nivinjoseph/n-config": "^1.0.33",
     "@nivinjoseph/n-defensive": "^1.0.35",
     "@nivinjoseph/n-exception": "^1.0.23",

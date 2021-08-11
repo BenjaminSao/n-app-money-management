@@ -1,22 +1,27 @@
 import "@babel/polyfill";
 import "@nivinjoseph/n-ext";
+import "./styles/main.scss";
 import * as $ from "jquery";
 (<any>window).jQuery = $; (<any>window).$ = $;
 import "material-design-icons/iconfont/material-icons.css";
-import "./styles/main.scss";
-import { pages } from "./pages";
 import { ClientApp, Vue } from "@nivinjoseph/n-app";
+
+import { pages } from "./pages";
 import { ComponentInstaller, Registry } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
-import { Routes } from "./pages/routes";
-// import { ConfigurationManager } from "@nivinjoseph/n-config";
-// Element-UI stuff
-import * as Element from "element-ui"; // https://element.eleme.io/#/en-US/component
-// @ts-ignore
-import locale from "element-ui/lib/locale/lang/en";
+import { MockTransactionService } from "../sdk/services/transaction-service/mock-transaction-service";
 import { components } from "./components";
+import { MockCurrencyConversionService } from "../sdk/services/currency-conversion-service/mock-currency-conversion-service";
+import { Routes } from "./pages/routes";
+console.log(Vue);
+// import { ConfigurationManager }pascal cas from "@nivinjoseph/n-config";
+// Element-UI stuff
+// import * as Element from "element-ui"; // https://element.eleme.io/#/en-US/component
+// @ts-ignore
+// import locale from "element-ui/lib/locale/lang/en";
 
-Vue.use(Element, { locale });
+
+// Vue.use(Element, { locale });
 
 // const isDev = ConfigurationManager.getConfig<string>("env") === "dev";
 // const isProd = ConfigurationManager.getConfig<string>("env") === "prod";
@@ -27,7 +32,8 @@ class Installer implements ComponentInstaller
     public install(registry: Registry): void
     {
         given(registry, "registry").ensureHasValue().ensureIsObject();
-        
+        registry.registerSingleton("TransactionService", MockTransactionService);
+        registry.registerSingleton("CurrencyConversionService", MockCurrencyConversionService);
         // Types of dependencies: 
         // registerSingleton: Singleton, one instance of the dependency class through out the lifecycle of the app.
         // registry.registerTransient: Transient, new instance of the dependency class is created when it needs to be injected.
@@ -43,8 +49,10 @@ const client = new ClientApp("#app", "shell")
     .useAccentColor("#008f7f")
     .registerComponents(...components)
     .registerPages(...pages)
-    .useAsInitialRoute(Routes.default)
-    .useAsUnknownRoute(Routes.default)
+    // .useAsInitialRoute(Routes.default)
+    // .useAsUnknownRoute(Routes.default)
+    .useAsInitialRoute(Routes.listTransactions)
+    .useAsUnknownRoute(Routes.listTransactions)
     .useHistoryModeRouting();
 
 client.bootstrap();

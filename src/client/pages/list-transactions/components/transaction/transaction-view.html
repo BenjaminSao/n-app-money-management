@@ -1,11 +1,11 @@
 <div class="transaction-view">
     <div class="card">
         <div class="card-footer">
-            <div class="card-footer-item is-flex-grow-3">{{transaction.name}}</div>
-            <div class="card-footer-item is-flex-grow-5">{{transaction.description}}</div>
-            <div class="card-footer-item is-flex-grow-2">{{transaction.transactionType}}</div>
-            <div class="card-footer-item is-flex-grow-1">{{transaction.transactionCurrency}}</div>
-            <div class="card-footer-item is-flex-grow-2">{{transaction.amount}}</div>
+            <p class="card-footer-item is-flex-grow-3">{{transaction.name}}</p>
+            <p class="card-footer-item is-flex-grow-5">{{transaction.description}}</p>
+            <p class="card-footer-item is-flex-grow-2">{{transaction.transactionType}}</p>
+            <p class="card-footer-item is-flex-grow-1">{{transaction.transactionCurrency}}</p>
+            <p class="card-footer-item is-flex-grow-2">{{transaction.amount}}</p>
             <div class="card-footer-item is-flex-grow-1">
                 <button class="delete" v-on:click.prevent="deleteTransaction"></button>
             </div>

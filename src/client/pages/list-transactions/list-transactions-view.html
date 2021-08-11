@@ -25,13 +25,13 @@
             <h2 class="title is-6 pt-6">Transactions List</h2>
             <div class="card">
                 <div class="card-footer">
-                    <div class="card-footer-item is-flex-grow-3">Transactions</div>
-                    <div class="card-footer-item is-flex-grow-5">Description</div>
-                    <div class="card-footer-item is-flex-grow-2">Credit/Debit</div>
-                    <div class="card-footer-item is-flex-grow-1">Currency</div>
-                    <div class="card-footer-item is-flex-grow-2">Amount</div>
-                    <div class="card-footer-item is-flex-grow-1">Delete</div>
-                    <div class="card-footer-item is-flex-grow-1">Edit</div>
+                    <p class="card-footer-item is-flex-grow-3">Transactions</p>
+                    <p class="card-footer-item is-flex-grow-5">Description</p>
+                    <p class="card-footer-item is-flex-grow-2">Credit/Debit</p>
+                    <p class="card-footer-item is-flex-grow-1">Currency</p>
+                    <p class="card-footer-item is-flex-grow-2">Amount</p>
+                    <p class="card-footer-item is-flex-grow-1">Delete</p>
+                    <p class="card-footer-item is-flex-grow-1">Edit</p>
                 </div>
             </div>
             <transaction v-for="transaction in transactions" v-bind:key="transaction.id" v-bind:value="transaction"
